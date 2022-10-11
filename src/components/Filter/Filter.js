@@ -1,25 +1,15 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class Filter extends Component {
-  render() {
-    return (
-      <>
-        <h3>Find contacts by name</h3>
-        <input
-          type="text"
-          name="filter"
-          value={this.props.value}
-          onChange={this.props.onChange}
-        />
-      </>
-    );
-  }
-}
+export const Filter = ({ value, onChange }) => {
+  return (
+    <label>
+      Filter by name
+      <input type="text" value={value} onChange={onChange} />
+    </label>
+  );
+};
 
 Filter.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
 };
-
-export default Filter;
