@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { ListItem } from '../ListItem';
+import { ListItem } from '../ListItem/ListItem';
 import { ContactsUl } from './contactsList.styled';
 
 const getContacts = (items, filter) =>

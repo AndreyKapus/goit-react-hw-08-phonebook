@@ -1,10 +1,7 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { deleteContact } from './Redux/contactsSlice';
-import {
-  ItemButton,
-  ListItems,
-} from '../components/ContactsList/contactsList.styled';
+import { deleteContact } from '../Redux/contactsSlice';
+import { ItemButton, ListItems } from '../ContactsList/contactsList.styled';
 
 export const ListItem = ({ id, name, number }) => {
   const dispatch = useDispatch();

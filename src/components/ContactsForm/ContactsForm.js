@@ -29,6 +29,7 @@ export const ContactForm = () => {
       return alert('this contact allready exist');
     }
     dispatch(createContact(inputValue));
+    clear();
   };
 
   const clear = () => {
