@@ -25,12 +25,10 @@ export const contactSlice = createSlice({
   reducers: {
     createContact(state, { payload }) {
       state.items.push(payload);
-      // localStorage.setItem('contacts', JSON.stringify(state.items));
     },
 
     deleteContact(state, { payload }) {
-      state.items.filter(item => item.id !== payload);
-      // localStorage.setItem('contacts', JSON.stringify(state.items));
+      state.items = state.items.filter(item => item.id !== payload);
     },
 
     filterContacts(state, { payload }) {
