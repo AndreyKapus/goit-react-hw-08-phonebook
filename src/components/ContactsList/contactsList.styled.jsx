@@ -6,7 +6,7 @@ export const ContactsUl = styled.ul`
   flex-direction: column;
 `;
 
-export const ListItem = styled.li`
+export const ListItems = styled.li`
   padding: 10px;
   flex-direction: flex-end;
 `;
