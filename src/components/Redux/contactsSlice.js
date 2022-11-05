@@ -1,6 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { fetchContacts } from './contactsOperations';
+
+import axios from 'axios';
 
 const persistConfig = {
   key: 'Contacts',
@@ -15,26 +18,37 @@ const init = [
   { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
 ];
 
-const contactsSlice = createSlice({
+export const contactsSlice = createSlice({
   name: 'contacts',
   initialState: {
-    items: init,
-    filter: '',
+    contactsItems: [],
+    loading: false,
+    error: null,
   },
+  // name: 'contacts',
+  // initialState: {
+  //   items: init,
+  //   filter: '',
+  // },
 
-  reducers: {
-    createContact(state, { payload }) {
-      state.items.push(payload);
-    },
-
-    deleteContact(state, { payload }) {
-      state.items = state.items.filter(item => item.id !== payload);
-    },
-
-    filterContacts(state, { payload }) {
-      state.filter = payload;
+  extraReducers: {
+    [fetchContacts.fulfilled]: (state, action) => {
+      state.contacts = action.payload;
     },
   },
+  // reducers: {
+  //   createContact(state, { payload }) {
+  //     state.items.push(payload);
+  //   },
+
+  //   deleteContact(state, { payload }) {
+  //     state.items = state.items.filter(item => item.id !== payload);
+  //   },
+
+  filterContacts(state, { payload }) {
+    state.filter = payload;
+  },
+  // },
 });
 
 export const contactReducer = persistReducer(

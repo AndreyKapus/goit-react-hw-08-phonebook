@@ -3,9 +3,7 @@ import { ListItem } from '../ListItem/ListItem';
 import { ContactsUl } from './contactsList.styled';
 
 const getContacts = (items, filter) =>
-  items.filter(contact =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
-  );
+  items.filter(contact => contact.name.toLowerCase().includes(filter));
 
 export const ContactsList = () => {
   const items = useSelector(state => state.contacts.items);
