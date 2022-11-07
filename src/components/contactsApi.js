@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 
 // export const baseUrl = 'https://6362c45937f2167d6f6c9777.mockapi.io';
 
-export const baseUrl = 'https://6362c45937f2167d6f6c9777.mockapi.io';
+export const baseUrl = 'https://6369042115219b84960d01a5.mockapi.io';
 
 export const contactsApi = axios.create({
   baseURL: baseUrl,
