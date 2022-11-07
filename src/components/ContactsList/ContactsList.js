@@ -2,6 +2,8 @@ import { useSelector } from 'react-redux';
 import { ListItem } from '../ListItem/ListItem';
 import { ContactsUl } from './contactsList.styled';
 
+const isLoading = state => state.contacts.isLoading;
+
 const getContacts = (items, filter) =>
   items.filter(contact => contact.name.toLowerCase().includes(filter));
 
@@ -17,8 +19,8 @@ export const ContactsList = () => {
   return (
     <ContactsUl>
       {filteredContacts.length
-        ? filteredContacts.map(({ id, name, number }) => (
-            <ListItem key={id} id={id} name={name} number={number} />
+        ? filteredContacts.map(({ id, name, phone }) => (
+            <ListItem key={id} id={id} name={name} phone={phone} />
           ))
         : 'Contacts not found :('}
     </ContactsUl>

@@ -19,3 +19,8 @@ export const addContact = async contact => {
   const { responce } = await contactsApi.post('/contacts', contact);
   return responce;
 };
+
+export const deleteContact = async id => {
+  const { data } = await contactsApi.delete(`/contacts/${id}`);
+  return data;
+};

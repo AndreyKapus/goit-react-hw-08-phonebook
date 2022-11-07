@@ -9,7 +9,7 @@ import { fetchContacts } from '../Redux/contactsOperations';
 import { addItem } from '../Redux/contactsOperations';
 
 export const ContactForm = () => {
-  const [form, setForm] = useState({ name: '', number: '' });
+  const [form, setForm] = useState({ name: '', phone: '' });
 
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts.items);
@@ -42,10 +42,10 @@ export const ContactForm = () => {
   }, [dispatch]);
 
   const clear = () => {
-    setForm({ name: '', number: '' });
+    setForm({ name: '', phone: '' });
   };
 
-  const { name, number } = form;
+  const { name, phone } = form;
   return (
     <Form onSubmit={handleSubmit}>
       <Label>
@@ -67,8 +67,8 @@ export const ContactForm = () => {
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
-          name="number"
-          value={number}
+          name="phone"
+          value={phone}
           onChange={handleChange}
         />
       </Label>

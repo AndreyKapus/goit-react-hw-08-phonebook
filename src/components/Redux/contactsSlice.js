@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { addContacts, fetchContacts } from './contactsOperations';
-import { addItem } from './contactsOperations';
+import { fetchContacts } from './contactsOperations';
+import { addItem, deleteItem } from './contactsOperations';
 
 import axios from 'axios';
 
@@ -39,6 +39,8 @@ export const contactsSlice = createSlice({
     },
   },
 
+  // Все конаткты-------------
+
   extraReducers: {
     [fetchContacts.pending]: (state, _) => {
       return {
@@ -52,14 +54,37 @@ export const contactsSlice = createSlice({
         ...state,
         items: [...action.payload],
       };
-      // [fetchContacts.fulfilled]: (state, action) => {
-      //   state.contactsItems = action.payload;
-      // },
     },
+
+    // Добавить контакт---------------
+
+    [addItem.pending]: (state, _) => {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    },
+
     [addItem.fulfilled]: (state, action) => {
       return {
         ...state,
         items: [...action.payload],
+      };
+    },
+
+    // Удалить контакт----------------
+
+    [deleteItem.pending]: (state, _) => {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    },
+
+    [deleteItem.fulfilled]: (state, action) => {
+      return {
+        ...state,
+        items: action.payload,
       };
     },
 
@@ -86,4 +111,4 @@ export const contactReducer = persistReducer(
   contactsSlice.reducer
 );
 
-export const { deleteContact, filterContacts } = contactsSlice.actions;
+export const { filterContacts } = contactsSlice.actions;
