@@ -16,6 +16,6 @@ export const getContacts = async () => {
 };
 
 export const addContact = async contact => {
-  const responce = await contactsApi.post('', contact);
+  const { responce } = await contactsApi.post('/contacts', contact);
   return responce;
 };
