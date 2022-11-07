@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createContact } from 'components/Redux/contactsSlice';
 import { nanoid } from 'nanoid';
@@ -35,7 +36,9 @@ export const ContactForm = () => {
     clear();
   };
 
-  fetchContacts();
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   const clear = () => {
     setForm({ name: '', number: '' });

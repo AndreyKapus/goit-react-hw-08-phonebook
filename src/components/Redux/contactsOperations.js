@@ -1,13 +1,32 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, useEffect } from '@reduxjs/toolkit';
 import { baseUrl } from 'components/contactsApi';
+import { getContacts } from '../contactsApi';
 import axios from 'axios';
+import { addContact } from 'components/contactsApi';
 
-axios.defaults.baseURL = 'https://634d22c3f5d2cc648e9d6bb8.mockapi.io';
+// axios.defaults.baseURL = 'https://63640ed18a3337d9a2f052f2.mockapi.io/contacts';
 
 export const fetchContacts = createAsyncThunk(
-  'contacts/fetchAllContacts',
-  async () => {
-    const contacts = await baseUrl.fetchContacts();
-    return contacts;
+  'contacts/fetchContacts',
+  async (_, { rejectWithValue }) => {
+    try {
+      const contacts = await getContacts();
+      return contacts;
+    } catch (error) {
+      return alert('alert');
+    }
+  }
+);
+
+export const addItem = createAsyncThunk(
+  'contact/addItem',
+  async (contact, { rejectWithValue }) => {
+    try {
+      await addContact(contact);
+      const contactsApi = getContacts();
+      return contactsApi;
+    } catch {
+      return rejectWithValue;
+    }
   }
 );
