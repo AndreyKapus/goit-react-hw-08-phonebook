@@ -53,6 +53,7 @@ export const contactsSlice = createSlice({
       return {
         ...state,
         items: [...action.payload],
+        isLoading: false,
       };
     },
 
@@ -69,6 +70,7 @@ export const contactsSlice = createSlice({
       return {
         ...state,
         items: [...action.payload],
+        isLoading: false,
       };
     },
 
@@ -85,6 +87,7 @@ export const contactsSlice = createSlice({
       return {
         ...state,
         items: action.payload,
+        isLoading: false,
       };
     },
 

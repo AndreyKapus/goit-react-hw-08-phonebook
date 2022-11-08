@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { ListItem } from '../ListItem/ListItem';
 import { ContactsUl } from './contactsList.styled';
+import { Loader } from '../Loader/Loader';
 
 const isLoading = state => state.contacts.isLoading;
 
@@ -23,6 +24,7 @@ export const ContactsList = () => {
             <ListItem key={id} id={id} name={name} phone={phone} />
           ))
         : 'Contacts not found :('}
+      {isLoading === true && <Loader />}
     </ContactsUl>
   );
 };
