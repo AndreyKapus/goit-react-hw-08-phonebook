@@ -1,8 +1,7 @@
 import { ContactForm } from './ContactsForm/ContactsForm';
 import { ContactsList } from './ContactsList/ContactsList';
 import { Filter } from './Filter/Filter';
-
-// https://63640ed18a3337d9a2f052f2.mockapi.io/contacts/:endpoint
+import { ToastContainer } from 'react-toastify';
 
 export default function App() {
   return (
@@ -11,6 +10,18 @@ export default function App() {
       <ContactForm />
       <Filter />
       <ContactsList />
+      <ToastContainer
+        position="top-left"
+        autoClose={1500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }

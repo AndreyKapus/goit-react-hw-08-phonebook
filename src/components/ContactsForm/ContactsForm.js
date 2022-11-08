@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { createContact } from 'components/Redux/contactsSlice';
 import { nanoid } from 'nanoid';
-import { contactsSlice } from 'components/Redux/contactsSlice';
 import { Form, Label, Input, AddButton } from './contactsForm.styled';
 import { fetchContacts } from '../Redux/contactsOperations';
 import { addItem } from '../Redux/contactsOperations';
@@ -35,7 +33,6 @@ export const ContactForm = () => {
       return alert('this contact allready exist');
     }
     dispatch(addItem(inputValue));
-    // dispatch(createContact(inputValue));
     clear();
   };
 

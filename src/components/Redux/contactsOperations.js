@@ -1,17 +1,16 @@
-import { createAsyncThunk, useEffect } from '@reduxjs/toolkit';
-import { baseUrl } from 'components/contactsApi';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getContacts } from '../contactsApi';
-import axios from 'axios';
 import { addContact } from 'components/contactsApi';
 import { deleteContact } from '../contactsApi';
-
-// axios.defaults.baseURL = 'https://63640ed18a3337d9a2f052f2.mockapi.io/contacts';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchContacts',
   async (_, { rejectWithValue }) => {
     try {
       const contacts = await getContacts();
+
       return contacts;
     } catch (error) {
       return alert('alert');
@@ -25,8 +24,10 @@ export const addItem = createAsyncThunk(
     try {
       await addContact(contact);
       const contactsApi = getContacts();
+      toast.success('We add your contact');
       return contactsApi;
     } catch {
+      toast.error('Something went wrong:(');
       return rejectWithValue;
     }
   }
@@ -38,8 +39,10 @@ export const deleteItem = createAsyncThunk(
     try {
       await deleteContact(id);
       const contactsApi = getContacts();
+      toast.success('Contact deleted');
       return contactsApi;
     } catch {
+      toast.error('Something went wrong:(');
       return rejectWithValue;
     }
   }
