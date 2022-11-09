@@ -1,27 +1,16 @@
-import { ContactForm } from './ContactsForm/ContactsForm';
-import { ContactsList } from './ContactsList/ContactsList';
-import { Filter } from './Filter/Filter';
-import { ToastContainer } from 'react-toastify';
+// import { ContactForm } from './ContactsForm/ContactsForm';
+// import { ContactsList } from './ContactsList/ContactsList';
+// import { Filter } from './Filter/Filter';
+// import { ToastContainer } from 'react-toastify';
+import { Home } from 'pages/ContactsPage';
+import { Routes, Route } from 'react-router-dom';
 
 export default function App() {
   return (
     <div>
-      <h1>PhoneBook</h1>
-      <ContactForm />
-      <Filter />
-      <ContactsList />
-      <ToastContainer
-        position="top-left"
-        autoClose={1500}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+      <Routes>
+        <Route index path="/" element={<Home />} />
+      </Routes>
     </div>
   );
 }

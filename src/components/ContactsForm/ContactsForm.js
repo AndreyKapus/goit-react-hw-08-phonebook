@@ -7,7 +7,7 @@ import { fetchContacts } from '../Redux/contactsOperations';
 import { addItem } from '../Redux/contactsOperations';
 import { Loader } from 'components/Loader/Loader';
 
-export const ContactForm = () => {
+const ContactForm = () => {
   const [form, setForm] = useState({ name: '', phone: '' });
 
   const dispatch = useDispatch();
@@ -80,3 +80,5 @@ export const ContactForm = () => {
     </div>
   );
 };
+
+export default ContactForm;

@@ -5,7 +5,7 @@ import { Loader } from '../Loader/Loader';
 
 const isLoading = state => state.contacts.isLoading;
 
-export const ContactsList = () => {
+const ContactsList = () => {
   const items = useSelector(state => state.contacts.items);
   const filter = useSelector(state => state.contacts.filter);
 
@@ -24,3 +24,5 @@ export const ContactsList = () => {
     </ContactsUl>
   );
 };
+
+export default ContactsList;
