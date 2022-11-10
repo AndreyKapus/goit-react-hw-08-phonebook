@@ -2,10 +2,12 @@ import ContactForm from 'components/ContactsForm/ContactsForm';
 import Filter from 'components/Filter/Filter';
 import ContactsList from 'components/ContactsList';
 import { ToastContainer } from 'react-toastify';
+import Navigation from 'components/Navigation/Navigation';
 
 export const Home = () => {
   return (
     <div>
+      <Navigation />
       <h1>PhoneBook</h1>
       <ContactForm />
       <Filter />
