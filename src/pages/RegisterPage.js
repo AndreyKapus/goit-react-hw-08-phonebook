@@ -1,4 +1,7 @@
+import { register } from 'components/Redux/contactsOperations';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+
+import { useDispatch } from 'react-redux';
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
@@ -14,17 +17,31 @@ const initialValues = {
 };
 
 const RegisterForm = () => {
-  const handleSubmit = (values, { resetForm }) => {
-    // const user = {
-    //   name: values.name,
-    //   email: values.email,
-    //   password: values.password,
-    // };
+  const dispatch = useDispatch();
 
-    console.log(values);
-    console.log(resetForm);
-    resetForm();
+  const handleSubmit = (values, { RegisterForm }) => {
+    // e.preventDefault();
+    // const form = e.currentTarget;
+
+    dispatch(
+      register({
+        name: values.name,
+        email: values.email,
+        password: values.password,
+      })
+    );
   };
+  // const handleSubmit = (values, { resetForm }) => {
+  // const user = {
+  //   name: values.name,
+  //   email: values.email,
+  //   password: values.password,
+  // };
+
+  // console.log(values);
+  // console.log(resetForm);
+  // resetForm();
+  // };
   return (
     <div>
       <h1>Sign in</h1>

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const baseUrl = 'https://6369042115219b84960d01a5.mockapi.io';
+export const baseUrl = 'https://connections-api.herokuapp.com';
 
 export const contactsApi = axios.create({
   baseURL: baseUrl,

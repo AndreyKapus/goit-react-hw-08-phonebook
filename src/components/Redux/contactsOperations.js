@@ -1,9 +1,29 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 import { getContacts } from '../contactsApi';
 import { addContact } from 'components/contactsApi';
 import { deleteContact } from '../contactsApi';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
+
+const setAuthHeader = token => {
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
+
+export const register = createAsyncThunk(
+  'auth/register',
+  async (credentials, thunkApi) => {
+    try {
+      const { result } = await axios.post('/users/signup', credentials);
+      setAuthHeader(result.data.token);
+      return result.data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error);
+    }
+  }
+);
 
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchContacts',
