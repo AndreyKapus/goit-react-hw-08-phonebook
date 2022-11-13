@@ -1,8 +1,12 @@
+import useAuth from 'hooks/useHook';
+
 const UserMenu = () => {
+  const { user } = useAuth();
+
   return (
     <div>
-      <p>mango@mail.com</p>
-      <button>Logout</button>
+      <p>Welcome {user.name}</p>
+      <button type="button">Logout</button>
     </div>
   );
 };
