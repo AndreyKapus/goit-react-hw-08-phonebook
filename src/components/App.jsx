@@ -7,17 +7,30 @@ import { Routes, Route } from 'react-router-dom';
 import RegisterForm from 'pages/RegisterPage';
 import LogInForm from 'pages/LogInPage';
 import Layout from 'Layout/Layout';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import useAuth from 'hooks/useHook';
+import { refreshUser } from './Redux/contactsOperations';
 
 export default function App() {
+  const dispatch = useDispatch();
+  const { isRefreshing } = useAuth;
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
   return (
-    <div>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index path="/" element={<Home />} />
-          <Route path="/register" element={<RegisterForm />} />
-          <Route path="/login" element={<LogInForm />} />
-        </Route>
-      </Routes>
-    </div>
+    !isRefreshing && (
+      <div>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index path="/" element={<Home />} />
+            <Route path="/register" element={<RegisterForm />} />
+            <Route path="/login" element={<LogInForm />} />
+          </Route>
+        </Routes>
+      </div>
+    )
   );
 }

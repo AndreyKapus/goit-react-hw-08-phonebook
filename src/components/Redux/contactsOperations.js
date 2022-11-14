@@ -47,6 +47,7 @@ export const logOut = createAsyncThunk(
   async (credentials, thunkApi) => {
     try {
       const result = await axios.post('/users/logout', credentials);
+      clearAuthHeader();
       return result.data;
     } catch (error) {
       return thunkApi.rejectWithValue(error);
@@ -54,46 +55,72 @@ export const logOut = createAsyncThunk(
   }
 );
 
+export const refreshUser = createAsyncThunk(
+  'auth/refresh',
+  async (_, thunkApi) => {
+    const { token } = thunkApi.getState().auth;
+    if (!token) return thunkApi.rejectWithValue('please, log in!');
+    setAuthHeader(token);
+    try {
+      const result = await axios.get('/users/current');
+      return result.data;
+    } catch (error) {
+      // const result = await axios.post('/users/current', credentials);
+      // clearAuthHeader();
+      // return result.data;
+      return thunkApi.rejectWithValue(error);
+    }
+  }
+);
+
+// export const getNewContacts = createAsyncThunk(
+//   'auth/getcontacts',
+//   async (credentials, thunkApi) => {
+//     try {
+//       const result = await axios.get('/contacts', credentials);
+//       setAuthHeader(result.data.token);
+//       return result.data;
+//     } catch (error) {
+//       return thunkApi.rejectWithValue(error);
+//     }
+//   }
+// );
+
 // ---------------------------- contacts
 export const fetchContacts = createAsyncThunk(
-  'contacts/fetchContacts',
-  async (_, { rejectWithValue }) => {
-    try {
-      const contacts = await getContacts();
+  'contacts/fetchAll',
 
-      return contacts;
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get('/contacts');
+      return response.data;
     } catch (error) {
-      return alert('alert');
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
 export const addItem = createAsyncThunk(
-  'contact/addItem',
-  async (contact, { rejectWithValue }) => {
+  'contacts/addContact',
+  async (data, thunkAPI) => {
     try {
-      await addContact(contact);
-      const contactsApi = getContacts();
-      toast.success('We add your contact');
-      return contactsApi;
-    } catch {
-      toast.error('Something went wrong:(');
-      return rejectWithValue;
+      const response = await axios.post('/contacts', data);
+      // setAuthHeader(response.data.token);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
 export const deleteItem = createAsyncThunk(
-  'contact/deleteContact',
-  async (id, { rejectWithValue }) => {
+  'contacts/deleteContact',
+  async (contactId, thunkAPI) => {
     try {
-      await deleteContact(id);
-      const contactsApi = getContacts();
-      toast.success('Contact deleted');
-      return contactsApi;
-    } catch {
-      toast.error('Something went wrong:(');
-      return rejectWithValue;
+      const response = await axios.delete(`/contacts/${contactId}`);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

@@ -9,7 +9,7 @@ export const Home = () => {
     <div>
       {/* <Layout /> */}
       <h1>PhoneBook</h1>
-      {/* <ContactForm />
+      <ContactForm />
       <Filter />
       <ContactsList />
       <ToastContainer
@@ -23,7 +23,7 @@ export const Home = () => {
         draggable
         pauseOnHover
         theme="light"
-      /> */}
+      />
     </div>
   );
 };

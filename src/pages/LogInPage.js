@@ -29,7 +29,7 @@ const LogInForm = () => {
   };
   return (
     <div>
-      <h1>Sign in</h1>
+      <h1>Log in</h1>
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
