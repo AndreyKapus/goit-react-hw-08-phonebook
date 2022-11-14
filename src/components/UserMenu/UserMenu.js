@@ -5,7 +5,9 @@ const UserMenu = () => {
 
   return (
     <div>
-      <p>Welcome</p>
+      <p>
+        Welcome <span>{user.name}</span>
+      </p>
       <button type="button">Logout</button>
     </div>
   );
