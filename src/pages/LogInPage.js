@@ -1,4 +1,6 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { useDispatch } from 'react-redux';
+import { logIn } from 'components/Redux/contactsOperations';
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
@@ -12,7 +14,9 @@ const initialValues = {
 };
 
 const LogInForm = () => {
+  const dispatch = useDispatch();
   const handleSubmit = (values, { resetForm }) => {
+    dispatch(logIn(values));
     // const user = {
     //   name: values.name,
     //   email: values.email,
@@ -42,7 +46,9 @@ const LogInForm = () => {
             <Field type="password" name="password" />
             <ErrorMessage name="password" component="div" />
           </label>
-          <button type="submit">Submit</button>
+          <button type="submit" onSubmit={handleSubmit}>
+            Submit
+          </button>
         </Form>
       </Formik>
     </div>

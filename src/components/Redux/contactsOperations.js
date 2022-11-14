@@ -29,6 +29,32 @@ export const register = createAsyncThunk(
   }
 );
 
+export const logIn = createAsyncThunk(
+  'auth/login',
+  async (credentials, thunkApi) => {
+    try {
+      const result = await axios.post('/users/login', credentials);
+      setAuthHeader(result.data.token);
+      return result.data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error);
+    }
+  }
+);
+
+export const logOut = createAsyncThunk(
+  'auth/logout',
+  async (credentials, thunkApi) => {
+    try {
+      const result = await axios.post('/users/logout', credentials);
+      return result.data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error);
+    }
+  }
+);
+
+// ---------------------------- contacts
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchContacts',
   async (_, { rejectWithValue }) => {
