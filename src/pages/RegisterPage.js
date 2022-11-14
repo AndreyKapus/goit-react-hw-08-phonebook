@@ -19,18 +19,12 @@ const initialValues = {
 const RegisterForm = () => {
   const dispatch = useDispatch();
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    const form = e.currentTarget;
+  const handleSubmit = (values, { resetForm }) => {
+    // values.preventDefault();
+    // const form = e.currentTarget;
 
-    dispatch(
-      register({
-        name: e.name,
-        email: e.email,
-        password: e.password,
-      })
-    );
-    e.reset();
+    dispatch(register(values));
+    resetForm();
   };
   // const handleSubmit = (values, { resetForm }) => {
   // const user = {
