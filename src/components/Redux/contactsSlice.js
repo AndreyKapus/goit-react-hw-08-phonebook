@@ -20,20 +20,20 @@ export const contactsSlice = createSlice({
   // Все конаткты-------------
 
   extraReducers: {
-    [fetchContacts.pending]: (state, _) => {
-      return {
-        ...state,
-        isLoading: true,
-      };
-    },
+    // [fetchContacts.pending]: (state, _) => {
+    //   return {
+    //     ...state,
+    //     isLoading: true,
+    //   };
+    // },
 
-    [fetchContacts.fulfilled]: (state, action) => {
-      return {
-        ...state,
-        items: [...action.payload],
-        isLoading: false,
-      };
-    },
+    // [fetchContacts.fulfilled]: (state, action) => {
+    //   return {
+    //     ...state,
+    //     items: [...action.payload],
+    //     isLoading: false,
+    //   };
+    // },
 
     // Добавить контакт---------------
 

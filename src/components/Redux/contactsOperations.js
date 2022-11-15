@@ -86,39 +86,83 @@ export const refreshUser = createAsyncThunk(
 //   }
 // );
 
-// ---------------------------- contacts
-export const fetchContacts = createAsyncThunk(
-  'contacts/fetchAll',
+// ---------------------------- contacts------------------------------
 
-  async (_, thunkAPI) => {
-    try {
-      const response = await axios.get('/contacts');
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+// export const fetchContacts = createAsyncThunk(
+//   'contacts/fetchAll',
+//   async (_, thunkAPI) => {
+//     try {
+//       const response = await axios.get('/contacts');
+//       return response.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
+
+// export const fetchContacts = createAsyncThunk(
+//   'contacts/fetchContacts',
+//   async (_, { rejectWithValue }) => {
+//     try {
+//       const contacts = await getContacts();
+
+//       return contacts;
+//     } catch (error) {
+//       return;
+//     }
+//   }
+// );
 
 export const addItem = createAsyncThunk(
   'contacts/addContact',
-  async (data, thunkAPI) => {
+  async (contact, thunkAPI) => {
     try {
-      const response = await axios.post('/contacts', data);
-      // setAuthHeader(response.data.token);
-      return response.data;
+      const res = await axios.post('/contacts', contact);
+      const { name, number, id } = res.data;
+      return { name, number, id };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
+
+// export const addItem = createAsyncThunk(
+//   'contact/addItem',
+//   async (contact, { rejectWithValue }) => {
+//     try {
+//       await addContact(contact);
+//       const contactsApi = getContacts();
+//       toast.success('We add your contact');
+
+//       return contactsApi;
+//     } catch {
+//       toast.error('Something went wrong:(');
+//       return rejectWithValue;
+//     }
+//   }
+// );
+
+// export const deleteItem = createAsyncThunk(
+//   'contact/deleteContact',
+//   async (id, { rejectWithValue }) => {
+//     try {
+//       await deleteContact(id);
+//       const contactsApi = getContacts();
+//       toast.success('Contact deleted');
+//       return contactsApi;
+//     } catch {
+//       toast.error('Something went wrong:(');
+//       return rejectWithValue;
+//     }
+//   }
+// );
 
 export const deleteItem = createAsyncThunk(
   'contacts/deleteContact',
   async (contactId, thunkAPI) => {
     try {
-      const response = await axios.delete(`/contacts/${contactId}`);
-      return response.data;
+      const res = await axios.delete(`/contacts/${contactId}`);
+      return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

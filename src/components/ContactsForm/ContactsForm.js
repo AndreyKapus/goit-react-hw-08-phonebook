@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';
 import { Form, Label, Input, AddButton } from './contactsForm.styled';
-import { fetchContacts } from '../Redux/contactsOperations';
+// import { fetchContacts } from '../Redux/contactsOperations';
 import { addItem } from '../Redux/contactsOperations';
 import { Loader } from 'components/Loader/Loader';
 
@@ -36,9 +36,9 @@ const ContactForm = () => {
     clear();
   };
 
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchContacts());
+  // }, [dispatch]);
 
   const clear = () => {
     setForm({ name: '', phone: '' });
