@@ -13,11 +13,12 @@ const ContactsList = () => {
   const filteredContacts = items.filter(option =>
     option.name.toLowerCase().includes(normalizedValue)
   );
+
   return (
     <ContactsUl>
       {filteredContacts.length
-        ? filteredContacts.map(({ id, name, phone }) => (
-            <ListItem key={id} id={id} name={name} phone={phone} />
+        ? filteredContacts.map(({ id, name, number }) => (
+            <ListItem key={id} id={id} name={name} number={number} />
           ))
         : 'Contacts not found :('}
       {isLoading === true && <Loader />}
