@@ -18,48 +18,48 @@ const clearAuthHeader = () => {
 
 export const register = createAsyncThunk(
   'auth/register',
-  async (credentials, thunkApi) => {
+  async (credentials, thunkAPI) => {
     try {
       const result = await axios.post('/users/signup', credentials);
       setAuthHeader(result.data.token);
       return result.data;
     } catch (error) {
-      return thunkApi.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
 
 export const logIn = createAsyncThunk(
   'auth/login',
-  async (credentials, thunkApi) => {
+  async (credentials, thunkAPI) => {
     try {
       const result = await axios.post('/users/login', credentials);
       setAuthHeader(result.data.token);
       return result.data;
     } catch (error) {
-      return thunkApi.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
 
 export const logOut = createAsyncThunk(
   'auth/logout',
-  async (credentials, thunkApi) => {
+  async (credentials, thunkAPI) => {
     try {
       const result = await axios.post('/users/logout', credentials);
       clearAuthHeader();
       return result.data;
     } catch (error) {
-      return thunkApi.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
 
 export const refreshUser = createAsyncThunk(
   'auth/refresh',
-  async (_, thunkApi) => {
-    const { token } = thunkApi.getState().auth;
-    if (!token) return thunkApi.rejectWithValue('please, log in!');
+  async (_, thunkAPI) => {
+    const { token } = thunkAPI.getState().auth;
+    if (!token) return thunkAPI.rejectWithValue('please, log in!');
     setAuthHeader(token);
     try {
       const result = await axios.get('/users/current');
@@ -68,7 +68,7 @@ export const refreshUser = createAsyncThunk(
       // const result = await axios.post('/users/current', credentials);
       // clearAuthHeader();
       // return result.data;
-      return thunkApi.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
@@ -88,17 +88,17 @@ export const refreshUser = createAsyncThunk(
 
 // ---------------------------- contacts------------------------------
 
-// export const fetchContacts = createAsyncThunk(
-//   'contacts/fetchAll',
-//   async (_, thunkAPI) => {
-//     try {
-//       const response = await axios.get('/contacts');
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
+export const fetchContacts = createAsyncThunk(
+  'contacts/fetchAll',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get('/contacts');
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 // export const fetchContacts = createAsyncThunk(
 //   'contacts/fetchContacts',

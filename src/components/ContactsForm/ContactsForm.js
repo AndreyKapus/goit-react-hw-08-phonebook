@@ -3,12 +3,12 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';
 import { Form, Label, Input, AddButton } from './contactsForm.styled';
-// import { fetchContacts } from '../Redux/contactsOperations';
+import { fetchContacts } from '../Redux/contactsOperations';
 import { addItem } from '../Redux/contactsOperations';
 import { Loader } from 'components/Loader/Loader';
 
 const ContactForm = () => {
-  const [form, setForm] = useState({ name: '', phone: '' });
+  const [form, setForm] = useState({ name: '', number: '' });
 
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts.items);
@@ -36,15 +36,15 @@ const ContactForm = () => {
     clear();
   };
 
-  // useEffect(() => {
-  //   dispatch(fetchContacts());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   const clear = () => {
-    setForm({ name: '', phone: '' });
+    setForm({ name: '', number: '' });
   };
 
-  const { name, phone } = form;
+  const { name, number } = form;
   return (
     <div>
       {isLoading === true && <Loader />}
@@ -69,8 +69,8 @@ const ContactForm = () => {
               pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
               title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
               required
-              name="phone"
-              value={phone}
+              name="number"
+              value={number}
               onChange={handleChange}
             />
           </Label>

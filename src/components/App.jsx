@@ -8,6 +8,7 @@ import RegisterForm from 'pages/RegisterPage';
 import LogInForm from 'pages/LogInPage';
 import Layout from 'Layout/Layout';
 import { useDispatch } from 'react-redux';
+import { RestrictedRoute } from './RestrictedRoute/RestrictedRoute';
 import { useEffect } from 'react';
 import useAuth from 'hooks/useHook';
 import { refreshUser } from './Redux/contactsOperations';
@@ -26,8 +27,18 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index path="/" element={<Home />} />
-            <Route path="/register" element={<RegisterForm />} />
-            <Route path="/login" element={<LogInForm />} />
+            <Route
+              path="/register"
+              element={
+                <RestrictedRoute component={RegisterForm} redirectTo={'/'} />
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <RestrictedRoute component={LogInForm} redirectTo={'/'} />
+              }
+            />
           </Route>
         </Routes>
       </div>
