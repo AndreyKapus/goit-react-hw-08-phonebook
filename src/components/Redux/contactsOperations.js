@@ -118,8 +118,20 @@ export const addItem = createAsyncThunk(
   async (contact, thunkAPI) => {
     try {
       const res = await axios.post('/contacts', contact);
-      const { name, number, id } = res.data;
-      return { name, number, id };
+      const result = res.data;
+      return result;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const deleteItem = createAsyncThunk(
+  'contacts/deleteContact',
+  async (id, thunkAPI) => {
+    try {
+      const res = await axios.delete(`/contacts/${id}`);
+      return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -156,15 +168,3 @@ export const addItem = createAsyncThunk(
 //     }
 //   }
 // );
-
-export const deleteItem = createAsyncThunk(
-  'contacts/deleteContact',
-  async (id, thunkAPI) => {
-    try {
-      const res = await axios.delete(`/contacts/${id}`);
-      return res.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);

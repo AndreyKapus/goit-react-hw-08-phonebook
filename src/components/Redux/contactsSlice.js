@@ -6,7 +6,7 @@ export const contactsSlice = createSlice({
   name: 'contacts',
   initialState: {
     items: [],
-    loading: false,
+    isLoading: false,
     error: null,
     filter: '',
   },
@@ -47,7 +47,7 @@ export const contactsSlice = createSlice({
     [addItem.fulfilled]: (state, action) => {
       return {
         ...state,
-        items: [...action.payload],
+        items: [...state.items, action.payload],
         isLoading: false,
       };
     },
@@ -62,12 +62,19 @@ export const contactsSlice = createSlice({
     },
 
     [deleteItem.fulfilled]: (state, action) => {
-      return {
-        ...state,
-        items: action.payload,
-        isLoading: false,
-      };
+      const index = state.items.findIndex(
+        contact => contact.id === action.payload.id
+      );
+      state.items.splice(index, 1);
     },
+
+    // [deleteItem.fulfilled]: (state, action) => {
+    //   return {
+    //     ...state,
+    //     items: action.payload,
+    //     isLoading: false,
+    //   };
+    // },
   },
 });
 
