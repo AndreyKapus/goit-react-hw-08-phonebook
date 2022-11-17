@@ -65,16 +65,10 @@ export const contactsSlice = createSlice({
       const index = state.items.findIndex(
         contact => contact.id === action.payload.id
       );
-      state.items.splice(index, 1);
-    },
 
-    // [deleteItem.fulfilled]: (state, action) => {
-    //   return {
-    //     ...state,
-    //     items: action.payload,
-    //     isLoading: false,
-    //   };
-    // },
+      state.items.splice(index, 1);
+      state.isLoading = false;
+    },
   },
 });
 

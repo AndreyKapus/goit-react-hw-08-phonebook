@@ -2,8 +2,9 @@ import ContactForm from 'components/ContactsForm/ContactsForm';
 import Filter from 'components/Filter/Filter';
 import ContactsList from 'components/ContactsList';
 import { ToastContainer } from 'react-toastify';
-import Layout from '../Layout/Layout';
+import { StyledMainTittle } from './Contacts.styled';
 import useAuth from 'hooks/useHook';
+import { ContactsContainer } from './Contacts.styled';
 
 export const Home = () => {
   const { isLoggedIn } = useAuth();
@@ -13,10 +14,12 @@ export const Home = () => {
       <div>
         {/* <Layout /> */}
 
-        <h1>PhoneBook</h1>
-        <ContactForm />
-        <Filter />
-        <ContactsList />
+        <StyledMainTittle>PhoneBook</StyledMainTittle>
+        <ContactsContainer>
+          <ContactForm />
+          <ContactsList />
+          <Filter />
+        </ContactsContainer>
         <ToastContainer
           position="top-left"
           autoClose={1500}

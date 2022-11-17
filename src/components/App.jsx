@@ -2,10 +2,10 @@
 // import { ContactsList } from './ContactsList/ContactsList';
 // import { Filter } from './Filter/Filter';
 // import { ToastContainer } from 'react-toastify';
-import { Home } from 'pages/ContactsPage';
+import { Home } from 'pages/ContactsPage/ContactsPage';
 import { Routes, Route } from 'react-router-dom';
-import RegisterForm from 'pages/RegisterPage';
-import LogInForm from 'pages/LogInPage';
+import RegisterForm from 'pages/RegisterPage/RegisterPage';
+import LogInForm from 'pages/LoginPage/LogInPage';
 import Layout from 'Layout/Layout';
 import { useDispatch } from 'react-redux';
 import { RestrictedRoute } from './RestrictedRoute/RestrictedRoute';

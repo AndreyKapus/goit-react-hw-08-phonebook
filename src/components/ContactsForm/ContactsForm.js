@@ -2,7 +2,13 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';
-import { Form, Label, Input, AddButton } from './contactsForm.styled';
+import {
+  StyledForm,
+  Label,
+  Input,
+  AddButton,
+  StyledFormTitle,
+} from './contactsForm.styled';
 import { fetchContacts } from '../Redux/contactsOperations';
 import { addItem } from '../Redux/contactsOperations';
 import { Loader } from 'components/Loader/Loader';
@@ -47,9 +53,10 @@ const ContactForm = () => {
   const { name, number } = form;
   return (
     <div>
+      <StyledFormTitle>Add new contact</StyledFormTitle>
       {isLoading === true && <Loader />}
       {
-        <Form onSubmit={handleSubmit}>
+        <StyledForm onSubmit={handleSubmit}>
           <Label>
             Name
             <Input
@@ -75,7 +82,7 @@ const ContactForm = () => {
             />
           </Label>
           <AddButton type="submit">Add contact</AddButton>
-        </Form>
+        </StyledForm>
       }
     </div>
   );

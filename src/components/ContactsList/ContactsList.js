@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { ListItem } from '../ListItem/ListItem';
-import { ContactsUl } from './contactsList.styled';
+import { ContactsUl, StyledContactsTittle } from './contactsList.styled';
 import { Loader } from '../Loader/Loader';
 
 const isLoading = state => state.contacts.isLoading;
@@ -16,6 +16,7 @@ const ContactsList = () => {
 
   return (
     <ContactsUl>
+      <StyledContactsTittle>Contacts</StyledContactsTittle>
       {filteredContacts.length
         ? filteredContacts.map(({ id, name, number }) => (
             <ListItem key={id} id={id} name={name} number={number} />

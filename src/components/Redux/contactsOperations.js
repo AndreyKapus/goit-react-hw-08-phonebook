@@ -119,8 +119,10 @@ export const addItem = createAsyncThunk(
     try {
       const res = await axios.post('/contacts', contact);
       const result = res.data;
+      toast.success('We add your contact');
       return result;
     } catch (error) {
+      toast.error('Something went wrong:(');
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -131,8 +133,10 @@ export const deleteItem = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const res = await axios.delete(`/contacts/${id}`);
+      toast.success('Contact deleted');
       return res.data;
     } catch (error) {
+      toast.error('Something went wrong:(');
       return thunkAPI.rejectWithValue(error.message);
     }
   }

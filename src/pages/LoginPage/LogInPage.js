@@ -2,6 +2,27 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
 import { logIn } from 'components/Redux/contactsOperations';
 import * as yup from 'yup';
+import styled from '@emotion/styled';
+import {
+  StyledTittle,
+  StyledLableName,
+  StyledButton,
+} from '../RegisterPage/RegisterPage.styled';
+
+const StyledForm = styled(Form)`
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+`;
+const StyledField = styled(Field)`
+  width: 300px;
+  height: 30px;
+  margin-bottom: 30px;
+  border: 0.5px solid;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  font-family: Bradley Hand;
+  font-size: 20px;
+`;
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -29,27 +50,27 @@ const LogInForm = () => {
   };
   return (
     <div>
-      <h1>Log in</h1>
+      <StyledTittle>Log in</StyledTittle>
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
         validationSchema={schema}
       >
-        <Form>
-          <label>
+        <StyledForm>
+          <StyledLableName>
             Email
-            <Field type="email" name="email" />
+            <StyledField type="email" name="email" />
             <ErrorMessage name="email" component="div" />
-          </label>
-          <label>
+          </StyledLableName>
+          <StyledLableName>
             Password
-            <Field type="password" name="password" />
+            <StyledField type="password" name="password" />
             <ErrorMessage name="password" component="div" />
-          </label>
-          <button type="submit" onSubmit={handleSubmit}>
+          </StyledLableName>
+          <StyledButton type="submit" onSubmit={handleSubmit}>
             Submit
-          </button>
-        </Form>
+          </StyledButton>
+        </StyledForm>
       </Formik>
     </div>
   );
