@@ -38,11 +38,6 @@ const LogInForm = () => {
   const dispatch = useDispatch();
   const handleSubmit = (values, { resetForm }) => {
     dispatch(logIn(values));
-    // const user = {
-    //   name: values.name,
-    //   email: values.email,
-    //   password: values.password,
-    // };
 
     console.log(values);
     console.log(resetForm);

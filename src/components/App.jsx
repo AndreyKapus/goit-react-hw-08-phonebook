@@ -1,7 +1,3 @@
-// import { ContactForm } from './ContactsForm/ContactsForm';
-// import { ContactsList } from './ContactsList/ContactsList';
-// import { Filter } from './Filter/Filter';
-// import { ToastContainer } from 'react-toastify';
 import { Home } from 'pages/ContactsPage/ContactsPage';
 import { Routes, Route } from 'react-router-dom';
 import RegisterForm from 'pages/RegisterPage/RegisterPage';

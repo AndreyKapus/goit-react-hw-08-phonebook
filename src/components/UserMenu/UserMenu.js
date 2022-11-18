@@ -1,6 +1,8 @@
 import { logOut } from 'components/Redux/contactsOperations';
 import useAuth from 'hooks/useHook';
 import { useDispatch } from 'react-redux';
+import { StyledUserBox, Greetengs, LogOutButton } from './UserMenu.styled';
+import { FaRegHandPeace } from 'react-icons/fa';
 
 const UserMenu = () => {
   const dispatch = useDispatch();
@@ -11,14 +13,17 @@ const UserMenu = () => {
   };
 
   return (
-    <div>
-      <p>
-        Welcome <span>{user.name}</span>
-      </p>
-      <button type="button" onClick={handleLogOut}>
-        Logout
-      </button>
-    </div>
+    <StyledUserBox>
+      <Greetengs>
+        Welcome{' '}
+        <span>
+          {user.name} <FaRegHandPeace />
+        </span>
+      </Greetengs>
+      <LogOutButton type="button" onClick={handleLogOut}>
+        Logout{' '}
+      </LogOutButton>
+    </StyledUserBox>
   );
 };
 
