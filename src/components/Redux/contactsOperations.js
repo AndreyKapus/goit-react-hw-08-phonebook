@@ -21,7 +21,8 @@ export const register = createAsyncThunk(
       setAuthHeader(result.data.token);
       return result.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      alert('Wrong format of login or password');
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -34,7 +35,8 @@ export const logIn = createAsyncThunk(
       setAuthHeader(result.data.token);
       return result.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      alert('Wrong login or password');
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -47,7 +49,7 @@ export const logOut = createAsyncThunk(
       clearAuthHeader();
       return result.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

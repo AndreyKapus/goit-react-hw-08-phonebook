@@ -35,7 +35,6 @@ const ContactForm = () => {
           contact.name.toLowerCase() === inputValue.name.toLocaleLowerCase()
       )
     ) {
-      clear();
       return alert('this contact allready exist');
     }
     dispatch(addItem(inputValue));

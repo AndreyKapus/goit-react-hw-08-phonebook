@@ -36,12 +36,8 @@ const initialValues = {
 
 const LogInForm = () => {
   const dispatch = useDispatch();
-  const handleSubmit = (values, { resetForm }) => {
+  const handleSubmit = values => {
     dispatch(logIn(values));
-
-    console.log(values);
-    console.log(resetForm);
-    resetForm();
   };
   return (
     <div>

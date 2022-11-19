@@ -43,7 +43,6 @@ const RegisterForm = () => {
 
   const handleSubmit = (values, { resetForm }) => {
     dispatch(register(values));
-    resetForm();
   };
 
   return (
