@@ -6,6 +6,7 @@ import Layout from 'Layout/Layout';
 import { useDispatch } from 'react-redux';
 import { RestrictedRoute } from './RestrictedRoute/RestrictedRoute';
 import { useEffect } from 'react';
+import ErrorPage from './PageNotFound/PageNotFound';
 import useAuth from 'hooks/useHook';
 import { refreshUser } from './Redux/contactsOperations';
 
@@ -36,6 +37,7 @@ export default function App() {
               }
             />
           </Route>
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </div>
     )
