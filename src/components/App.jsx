@@ -6,7 +6,7 @@ import Layout from 'Layout/Layout';
 import { useDispatch } from 'react-redux';
 import { RestrictedRoute } from './RestrictedRoute/RestrictedRoute';
 import { useEffect } from 'react';
-import ErrorPage from './PageNotFound/PageNotFound';
+import ErrorPage from '../pages/PageNotFound/PageNotFound';
 import useAuth from 'hooks/useHook';
 import { refreshUser } from './Redux/contactsOperations';
 

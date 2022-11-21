@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { NavLink } from 'react-router-dom';
 
 export const StartPageContainer = styled.div`
   text-align: center;
@@ -18,7 +19,7 @@ export const StyledP = styled.p`
   font-family: Bradley Hand;
 `;
 
-export const StyledLink = styled.a`
+export const StyledLink = styled(NavLink)`
   text-decoration: none;
   color: blue;
 `;
